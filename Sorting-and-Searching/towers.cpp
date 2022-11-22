@@ -7,20 +7,11 @@ int solve() {
   int n, ans;
   cin >> n;
   multiset<int> towers;
-  cin >> ans;
-  towers.insert(ans);
-  n--;
   while (n--) {
     cin >> ans;
-    if (ans > *prev(towers.end()))
-      towers.insert(ans);
-    else {
-      auto a = towers.upper_bound(ans);
-      if (a != towers.end()) {
-        towers.erase(a);
-      }
-      towers.insert(ans);
-    }
+    auto a = towers.upper_bound(ans);
+    if (a != towers.end()) towers.erase(a);
+    towers.insert(ans);
   }
   cout << towers.size() << endl;
   return 0;
